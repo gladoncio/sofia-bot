@@ -1,0 +1,33 @@
+# Node.js
+node_modules/
+.env
+dist/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# SQLite (si usas)
+*.sqlite
+*.sqlite3
+
+# Logs
+logs
+*.log
+
+# MacOS
+.DS_Store
+
+# Linux
+*~
+
+# Docker
+docker-compose.override.yml
+
+# Visual Studio Code
+.vscode/
+
+# Otros posibles
+coverage/
+.idea/
+*.tgz

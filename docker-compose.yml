@@ -1,0 +1,36 @@
+version: "3.9"
+services:
+  discord-bot:
+    build: .
+    container_name: sofia-bot
+    working_dir: /usr/src/app
+    volumes:
+      - ./src:/usr/src/app/src
+      - /usr/src/app/node_modules
+    env_file:
+      - .env
+    depends_on:
+      - db
+    command: sh -c "node src/deploy-commands.js && node src/index.js"
+
+  db:
+    image: postgres:15
+    container_name: sofia-postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  adminer:
+    image: adminer
+    container_name: sofia-adminer
+    restart: always
+    ports:
+      - 9090:8080
+
+volumes:
+  postgres_data:
